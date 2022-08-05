@@ -45,3 +45,4 @@ def save_sites_sqlite():
         sqliteconn.commit()
         
         
+sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
