@@ -1,10 +1,5 @@
 from sqlite import sqliteconn
-import pandas as pd
-import os
-from urllib.request import Request, urlopen
-import shutil
-import glob
-from datetime import datetime
+from utils import * 
 
 sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
 def getMainSitemap():
