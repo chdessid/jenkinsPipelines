@@ -1,5 +1,4 @@
 from utils import *
-import psycopg2
 
 
 def urls_from_sitemap():
@@ -23,3 +22,6 @@ def urls_from_sitemap():
                 except Exception as e :
                     print(e)
                     pass
+                
+                
+urls_from_sitemap()
