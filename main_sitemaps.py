@@ -33,5 +33,4 @@ def getMainSitemap():
             except Exception as e :
                 print(e,index['urls'])
                 pass
-            
- getMainSitemap()
+getMainSitemap()
