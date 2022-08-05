@@ -8,7 +8,6 @@ from datetime import datetime
 
 sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
 def getMainSitemap():
-    savesqlite()
     for row, index in sitelistpd.iterrows():
         dds =  (index["mainSitemap_extracted_at"])
         lastupdatedate = (str(str(dds).split(" ")[0]))
@@ -34,3 +33,5 @@ def getMainSitemap():
             except Exception as e :
                 print(e,index['urls'])
                 pass
+            
+ getMainSitemap()
