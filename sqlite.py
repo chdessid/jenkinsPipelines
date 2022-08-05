@@ -43,6 +43,7 @@ def save_sites_sqlite():
         updatesql = '''update sitelist  set sitemapurl = ? where urls like ?; '''
         sqlitecursor.execute(updatesql,(index["sitemapurl"],str(index["urls"])))
         sqliteconn.commit()
-save_sites_sqlite()  
+        
 create_sqlite_table()
+save_sites_sqlite()
 sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
