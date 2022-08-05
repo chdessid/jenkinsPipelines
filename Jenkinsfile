@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Create Sqlite') {
             steps {
-               sh 'python runSqlite.py'
+               sh 'python create_sqlite.py'
             }
         }
-        stage('Test') {
+        stage('Get Main Sitemap') {
             steps {
-                echo 'Testing..'
+                sh 'python main_sitemaps.py'
             }
         }
         stage('Deploy') {
