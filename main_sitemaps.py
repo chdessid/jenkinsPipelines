@@ -1,7 +1,6 @@
-from sqlite import sqliteconn,sqlitecursor
+from sqlite import *
 from utils import * 
 
-sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
 def getMainSitemap():
     for row, index in sitelistpd.iterrows():
         dds =  (index["mainSitemap_extracted_at"])
