@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Create Sqlite') {
             steps {
                sh 'python runSqlite.py'
             }
