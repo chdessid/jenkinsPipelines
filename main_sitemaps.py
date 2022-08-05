@@ -1,4 +1,4 @@
-from sqlite import sqliteconn
+from sqlite import sqliteconn,sqlitecursor
 from utils import * 
 
 sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
