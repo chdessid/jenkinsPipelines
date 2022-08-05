@@ -1,4 +1,4 @@
-import sqliteconn from sqlite
+from sqlite import sqliteconn
 import pandas as pd
 import os
 from urllib.request import Request, urlopen
