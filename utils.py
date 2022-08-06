@@ -39,3 +39,17 @@ def getUrl(string):
         print(e)
         pass
     return [x[0] for x in url]
+  
+  
+def excludepatter(str):
+    excludestrings = [ ".jpg","wp-content",
+                      ".png","cdn","tags","/tag/","category/"
+                      "category","http://www.sitemaps.org",
+                      "http://www.google.com","http://www.w3.org"]
+    isMatch = [True for x in excludestrings if x in str]
+    if True in isMatch:
+        print ("IGNORED :: ", str)
+    else :
+        return(str)
+
+
