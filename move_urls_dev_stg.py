@@ -13,7 +13,7 @@ stg_pgconn.autocommit = True
 
 selectall = ''' select * from articles where name is not null and description is not null and category is not null and stg_ok is not null limit 1000 '''
 dev_records = sqlio.read_sql_query(selectall, dev_pgconn)
-print ("TOTAL RECORDS TO BE MOVED ::: ",len(dev_records.index))
+print ("TOTAL DEV RECORDS TO BE MOVED TO STG :::  {} ::: RECORDS".format(len(dev_records.index)),)
 for row, index in dev_records.iterrows():
     print ("MOVING/ MARKING DEV URLS TO STG : {}".format(index["urls"]))
     send_to_stg = ''' insert into articles (urls) values (%s) on conflict do nothing '''
