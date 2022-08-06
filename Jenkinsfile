@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Urls to Postgres') {
             steps {
-               sh 'python urlspostgres.py'
+               sh 'python3 urls_postgres.py'
             }
         }
        
