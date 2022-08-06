@@ -30,3 +30,19 @@ def days_between(d1, d2):
 pgconn = psycopg2.connect(user="sqladmin",password="Cc.09275920",host="localhost",port="5432",database="jaridaa_dev")
 pgcursor = pgconn.cursor()
 pgconn.autocommit = True
+
+
+def getUrl(string):
+    """
+    Extract Urls from sitemap xml
+    :param string:
+    :return:
+    """
+    try:
+        regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+        url = re.findall(regex, string)
+
+    except Exception as e :
+        print(e)
+        pass
+    return [x[0] for x in url]
