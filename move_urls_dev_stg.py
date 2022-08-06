@@ -19,7 +19,7 @@ for row, index in dev_records.iterrows():
     send_to_stg = ''' insert into articles (urls) values (%s) on conflict do nothing '''
     query_stg_pgcursor = stg_pgcursor.execute(send_to_stg,[index["urls"]])
     
-    addattributes = ''' update articles set name =%s,description =%s,devimages =%s where urls =%s '''
+    addattributes = ''' update articles set name =%s, description =%s , devimages =%s where urls =%s '''
     query_stg_pgcursor_attributes = stg_pgcursor.execute(addattributes,[index["name"],index["description"],
                                                                         index["devimages"],index["urls"]])
     mark_stg_ok = ''' update articles set stg_ok=TRUE where urls =%s '''
