@@ -1,8 +1,9 @@
 from utils import *
 from sqlite import *
 
+sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
 def urls_from_sitemap():
-    for row, index in sitelist.iterrows():
+    for row, index in sitelistpd.iterrows():
         subsitemappath = "collected/{}/subsitemap/".format(index["sitename"])
         if "wikihow" not in subsitemappath:
             files = (glob.glob("{}/{}".format(subsitemappath,"*.xml")))
