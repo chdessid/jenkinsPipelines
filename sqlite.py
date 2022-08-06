@@ -3,7 +3,7 @@ import pandas as pd
 import sqlite3
 
 sitelistcsv = pd.read_csv("sitelist.csv")
-file = "main.db"
+file = "/var/lib/jenkins/workspace/DEV/main.db"
 
 try:
     sqliteconn = sqlite3.connect(file)
