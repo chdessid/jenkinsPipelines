@@ -12,7 +12,7 @@ conn = psycopg2.connect(user="sqladmin", password="Cc.09275920",
 cursor = conn.cursor()
 conn.autocommit = True
 
-query = '''SELECT * from articles where lang like 'ar'  and name is null limit 100 '''
+query = '''SELECT * from articles where lang like 'ar' and name is null '''
 
 querlist = [query]
 for q in querlist:
@@ -26,14 +26,19 @@ class MainSpider(scrapy.Spider):
     start_urls = [l for l in links] 
 
     def parse(self, response):
-        page = response.request.url
-        title = response.css('h1::text').extract()
-        if len(title):
-            query = '''update articles set name =%s  where urls like %s '''
-            cursor.execute(query, [str(title), str(page)])
-            print("records was inserted: {} ".format(page))
-
-        yield {
-                "url": page,
-                "title": title
-                }
+        urlsite = response.request.url
+        if "zyadda" in urlsite :
+            title = response.css('article > header > h1').extract()
+            description = response.css("div.entry-content.clearfix.single-post-content").extract()
+            devimages = response.css("div.single-featured > img").extract()
+            query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
+            cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
+            print ("SUBMITTED : {}".format(urlsite))
+            
+        elif "almrsal" in urlsite :
+            title = response.css('h1').extract()
+            description = response.css("div.entry-content.entry.clearfix").extract()
+            devimages = response.css("figure > img").extract()
+            query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
+            cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
+            print ("SUBMITTED : {}".format(urlsite))
