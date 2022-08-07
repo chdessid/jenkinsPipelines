@@ -7,8 +7,8 @@ import soupsieve
 from sqlalchemy import engine, create_engine
 from decouple import config
 
-SITEMAP_PATH = config('SITEMAP_PATH')
-DEV_POSTGRES = config('DEV_POSTGRES')
+DEV_POSTGRES_HOST = config('DEV_POSTGRES_HOST')
+DEV_DATABASE_NAME = config('DEV_DATABASE_NAME')
 POSTGRES_USER = config('POSTGRES_USER')
 POSTGRES_PASS = config('POSTGRES_PASS')
 POSTGRES_PORT = config('POSTGRES_PORT')
