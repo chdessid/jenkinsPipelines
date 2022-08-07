@@ -1,3 +1,4 @@
+from asyncio import constants
 import scrapy
 import pandas as pd
 import psycopg2
@@ -32,7 +33,12 @@ class MainSpider(scrapy.Spider):
     start_urls = [l for l in links] 
 
     def parse(self, response):
-        urlsite = response.request.url
+        try : 
+            urlsite = response.request.url
+        except Exception as e :
+            print(e)
+            pass
+        
         if "zyadda" in urlsite :
             title = response.css('article > header > h1').extract()
             description = response.css("div.entry-content.clearfix.single-post-content").extract()
@@ -56,4 +62,3 @@ class MainSpider(scrapy.Spider):
             query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
             cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
             print ("SUBMITTED : {}".format(urlsite))
-
