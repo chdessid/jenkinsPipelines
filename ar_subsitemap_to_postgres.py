@@ -2,12 +2,10 @@ from utils import *
 from sqlite import *
 import os
 
-sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
-path_sub_sitemap = os.getenv('SUBSITEMAP_PATH')
-print ("GETTING SUB SITEMAP : ",path_sub_sitemap)
+print ("### PARAMS GETTING SUB SITEMAP : ",SUBSITEMAP_PATH)
 def urls_from_sitemap():
     for row, index in sitelistpd.iterrows():
-        subsitemappath = "{}/{}/subsitemap/".format(path_sub_sitemap,index["sitename"])
+        subsitemappath = "{}/{}/subsitemap/".format(SUBSITEMAP_PATH,index["sitename"])
         if "ar"  in index["lang"]:
             files = (glob.glob("{}/{}".format(subsitemappath,"*.xml")))
             for f in files:
