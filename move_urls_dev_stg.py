@@ -20,7 +20,7 @@ stg_pgconn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
 stg_pgcursor = stg_pgconn.cursor()
 stg_pgconn.autocommit = True
 
-selectall = ''' select * from articles where name is not null and description is not null and devimages is not null and stg_ok is null '''
+selectall = ''' select * from articles where name is not null and description is not null and devimages is not null and stg_ok is null limit 10000'''
 dev_records = sqlio.read_sql_query(selectall, dev_pgconn)
 print ("TOTAL DEV RECORDS TO BE MOVED TO STG :::  {} ::: RECORDS".format(len(dev_records.index)),)
 for row, index in dev_records.iterrows():
