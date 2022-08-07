@@ -10,7 +10,6 @@ from urllib.parse import urlparse, urlunparse
 from decouple import config
 
 SUBSITEMAP_PATH = config('SUBSITEMAP_PATH')
-API_KEY = config('KEY')
 
 
 
