@@ -10,7 +10,10 @@ from urllib.parse import urlparse, urlunparse
 from decouple import config
 
 SITEMAP_PATH = config('SITEMAP_PATH')
-
+DEV_POSTGRES = config('DEV_POSTGRES')
+POSTGRES_USER = config('POSTGRES_USER')
+POSTGRES_PASS = config('POSTGRES_PASS')
+POSTGRES_PORT = config('POSTGRES_PORT')
 
 
 headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
