@@ -1,11 +1,13 @@
 from utils import *
 from sqlite import *
+import os
 
 sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
+path_sub_sitemap = os.getenv('SUBSITEMAP_PATH')
 
 def urls_from_sitemap():
     for row, index in sitelistpd.iterrows():
-        subsitemappath = "/var/lib/jenkins/workspace/DEV/collected/{}/subsitemap/".format(index["sitename"])
+        subsitemappath = "{}/{}/subsitemap/".format(path_sub_sitemap,index["sitename"])
         if "ar"  in index["lang"]:
             files = (glob.glob("{}/{}".format(subsitemappath,"*.xml")))
             for f in files:
