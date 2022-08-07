@@ -1,6 +1,7 @@
 import psycopg2
 import pandas as pd
 import pandas.io.sql as sqlio
+from decouple import config
 
 DEV_POSTGRES_HOST = config('DEV_POSTGRES_HOST')
 DEV_DATABASE_NAME = config('DEV_DATABASE_NAME')
