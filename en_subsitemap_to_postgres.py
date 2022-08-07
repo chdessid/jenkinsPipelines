@@ -6,7 +6,7 @@ sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
 def urls_from_sitemap():
     for row, index in sitelistpd.iterrows():
         subsitemappath = "/var/lib/jenkins/workspace/DEV/collected/{}/subsitemap/".format(index["sitename"])
-        if "en"  in index["lang"]:
+        if "en"  in index["lang"] and "wikihow" not in index["urls"] and "chron" not in index["urls"]:
             files = (glob.glob("{}/{}".format(subsitemappath,"*.xml")))
             for f in files:
                 try:
