@@ -18,7 +18,7 @@ conn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
 cursor = conn.cursor()
 conn.autocommit = True
 
-query = '''SELECT * from articles where lang like 'ar' and name is null and urls not like %%altibbi%%'''
+query = '''SELECT * from articles where lang like 'ar' and name is null and urls not like '%%altibbi%%' '''
 
 querlist = [query]
 for q in querlist:
