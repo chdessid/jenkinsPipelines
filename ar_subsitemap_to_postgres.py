@@ -4,7 +4,7 @@ import os
 
 sitelistpd = pd.read_sql_query("SELECT * from sitelist", sqliteconn)
 path_sub_sitemap = os.getenv('SUBSITEMAP_PATH')
-
+print ("GETTING SUB SITEMAP : ",path_sub_sitemap)
 def urls_from_sitemap():
     for row, index in sitelistpd.iterrows():
         subsitemappath = "{}/{}/subsitemap/".format(path_sub_sitemap,index["sitename"])
