@@ -14,7 +14,7 @@ POSTGRES_PASS = config('POSTGRES_PASS')
 POSTGRES_PORT = config('POSTGRES_PORT')
 
 conn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
-                        host=DEV_POSTGRES, port=POSTGRES_PORT, database=DEV_POSTGRES)
+                        host=DEV_POSTGRES_HOST, port=POSTGRES_PORT, database=DEV_DATABASE_NAME)
 cursor = conn.cursor()
 conn.autocommit = True
 
