@@ -24,7 +24,7 @@ for row, index in stg_records.iterrows():
     
     addattributes = ''' update articles set name =%s, description =%s , devimages =%s where urls =%s '''
     query_prod_pgcursor_attributes = prod_pgcursor.execute(addattributes,[index["name"].encode('ascii', 'ignore').decode('ascii'),index["description"].encode('ascii', 'ignore').decode('ascii'),
-                                                                        index["devimages"],index["urls"]])
+                                                                        index["devimages"].encode('ascii', 'ignore').decode('ascii'),index["urls"]])
     mark_prod_ok = ''' update articles set prod_ok=TRUE where urls =%s '''
     query_mark_prod_ok = stg_pgcursor.execute(mark_prod_ok,[index["urls"]])
     print ("PROD RECORDS MOVED : {}".format(index["urls"]))
