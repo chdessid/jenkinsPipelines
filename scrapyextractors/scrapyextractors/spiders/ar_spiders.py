@@ -6,6 +6,13 @@ import pandas.io.sql as sqlio
 import soupsieve
 
 from sqlalchemy import engine, create_engine
+from decouple import config
+
+SITEMAP_PATH = config('SITEMAP_PATH')
+DEV_POSTGRES = config('DEV_POSTGRES')
+POSTGRES_USER = config('POSTGRES_USER')
+POSTGRES_PASS = config('POSTGRES_PASS')
+POSTGRES_PORT = config('POSTGRES_PORT')
 
 conn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
                         host=DEV_POSTGRES, port=POSTGRES_PORT, database=DEV_POSTGRES)
