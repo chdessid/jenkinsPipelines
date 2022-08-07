@@ -42,3 +42,11 @@ class MainSpider(scrapy.Spider):
             query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
             cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
             print ("SUBMITTED : {}".format(urlsite))
+            
+        elif "mosoah" in urlsite :
+            title = response.css('h1').extract()
+            description = response.css("body > div.mainContentWrap > div > div > div.contentWrap > div.content-post > div:nth-child(5)").extract()
+            devimages = response.css("div.content-post > img").extract()
+            query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
+            cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
+            print ("SUBMITTED : {}".format(urlsite))
