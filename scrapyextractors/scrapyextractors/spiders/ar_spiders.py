@@ -1,4 +1,3 @@
-from utils import * 
 import scrapy
 import pandas as pd
 import psycopg2
