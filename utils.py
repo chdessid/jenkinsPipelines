@@ -27,7 +27,7 @@ def days_between(d1, d2):
     return abs((d2 - d1).days)
 
   
-pgconn = psycopg2.connect(user="sqladmin",password="Cc.09275920",host="localhost",port="5432",database="jaridaa_dev")
+pgconn = psycopg2.connect(user="sqladmin",password="Cc.09275920",host="192.168.1.73",port="5432",database="jaridaa_dev")
 pgcursor = pgconn.cursor()
 pgconn.autocommit = True
 
