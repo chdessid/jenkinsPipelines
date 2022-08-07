@@ -9,7 +9,7 @@ from datetime import datetime
 from urllib.parse import urlparse, urlunparse
 from decouple import config
 
-SUBSITEMAP_PATH = config('SUBSITEMAP_PATH')
+SITEMAP_PATH = config('SITEMAP_PATH')
 
 
 
