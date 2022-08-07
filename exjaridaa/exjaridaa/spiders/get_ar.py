@@ -12,7 +12,7 @@ conn = psycopg2.connect(user="sqladmin", password="Cc.09275920",
 cursor = conn.cursor()
 conn.autocommit = True
 
-query = '''SELECT * from articles where lang like 'ar'  and name is null '''
+query = '''SELECT * from articles where lang like 'ar'  and name is null limit 100 '''
 
 querlist = [query]
 for q in querlist:
