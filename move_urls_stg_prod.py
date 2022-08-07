@@ -23,7 +23,7 @@ for row, index in stg_records.iterrows():
     query_prod_pgcursor = prod_pgcursor.execute(send_to_prod,[index["urls"]])
     
     addattributes = ''' update articles set name =%s, description =%s , devimages =%s where urls =%s '''
-    query_prod_pgcursor_attributes = prod_pgcursor.execute(addattributes,[index["name"],index["description"],
+    query_prod_pgcursor_attributes = prod_pgcursor.execute(addattributes,[index["name"].encode('ascii', 'ignore').decode('ascii'),index["description"].encode('ascii', 'ignore').decode('ascii'),
                                                                         index["devimages"],index["urls"]])
     mark_prod_ok = ''' update articles set prod_ok=TRUE where urls =%s '''
     query_mark_prod_ok = stg_pgcursor.execute(mark_prod_ok,[index["urls"]])
