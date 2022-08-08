@@ -11,7 +11,7 @@ BOT_NAME = 'scrapyextractors'
 
 SPIDER_MODULES = ['scrapyextractors.spiders']
 NEWSPIDER_MODULE = 'scrapyextractors.spiders'
-
+HTTPERROR_ALLOWED_CODES  =[404]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapyextractors (+http://www.yourdomain.com)'
