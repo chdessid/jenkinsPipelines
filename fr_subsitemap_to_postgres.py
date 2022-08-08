@@ -17,7 +17,7 @@ def urls_from_sitemap():
                             cleanurl = excludepatter(i)
                             if (cleanurl) is not None:
                                 query = '''insert into articles (urls,sitename,lang) VALUES (%s,%s,%s) ON CONFLICT DO NOTHING'''
-                                pgcursor.execute(query, [str(cleanurl),  str(index["sitename"]), str(index["lang"])])
+                                cursor .execute(query, [str(cleanurl),  str(index["sitename"]), str(index["lang"])])
                                 print ("Submitted :: " , cleanurl)
 
                 except Exception as e :
