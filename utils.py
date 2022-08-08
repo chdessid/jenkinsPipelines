@@ -10,10 +10,17 @@ from urllib.parse import urlparse, urlunparse
 from decouple import config
 
 SITEMAP_PATH = config('SITEMAP_PATH')
-DEV_POSTGRES = config('DEV_POSTGRES')
+
+DEV_POSTGRES_HOST = config('DEV_POSTGRES_HOST')
+DEV_DATABASE_NAME = config('DEV_DATABASE_NAME')
 POSTGRES_USER = config('POSTGRES_USER')
 POSTGRES_PASS = config('POSTGRES_PASS')
 POSTGRES_PORT = config('POSTGRES_PORT')
+
+conn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
+                        host=DEV_POSTGRES_HOST, port=POSTGRES_PORT, database=DEV_DATABASE_NAME)
+cursor = conn.cursor()
+conn.autocommit = True
 
 
 headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
