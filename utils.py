@@ -8,9 +8,9 @@ import glob
 from datetime import datetime
 from urllib.parse import urlparse, urlunparse
 from decouple import config
+import psycopg2
 
 SITEMAP_PATH = config('SITEMAP_PATH')
-
 DEV_POSTGRES_HOST = config('DEV_POSTGRES_HOST')
 DEV_DATABASE_NAME = config('DEV_DATABASE_NAME')
 POSTGRES_USER = config('POSTGRES_USER')
