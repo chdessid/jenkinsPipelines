@@ -62,3 +62,10 @@ class MainSpider(scrapy.Spider):
             query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
             cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
             print ("SUBMITTED : {}".format(urlsite))
+       else  :
+            title = response.css(' h1').extract()
+            #description = response.css("#mw-content-text > div").extract()
+            #devimages = response.css("#step-id-00 > div.mwimg.largeimage.floatcenter").extract()
+            query = '''update articles set name =%s where urls like %s '''
+            cursor.execute(query, [str(title), str(urlsite)])
+            print ("SUBMITTED : {}".format(urlsite))
