@@ -19,7 +19,7 @@ conn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
 cursor = conn.cursor()
 conn.autocommit = True
 
-query = '''SELECT * from articles where lang like 'ar' and name is null and urls not like '%%altibbi%%' '''
+query = '''SELECT * from articles where lang like 'ar' and name is null '''
 
 querlist = [query]
 for q in querlist:
@@ -61,4 +61,11 @@ class MainSpider(scrapy.Spider):
             devimages = response.css("div.content-post > img").extract()
             query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
             cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
+            print ("SUBMITTED : {}".format(urlsite))
+        elif "altibbi" in urlsite :
+            title = response.css('h1').extract()
+            #description = response.css("body > div.mainContentWrap > div > div > div.contentWrap > div.content-post > div:nth-child(5)").extract()
+            #devimages = response.css("div.content-post > img").extract()
+            query = '''update articles set name =%s where urls like %s '''
+            cursor.execute(query, [str(title), str(urlsite)])
             print ("SUBMITTED : {}".format(urlsite))
