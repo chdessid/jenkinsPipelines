@@ -19,7 +19,7 @@ conn = psycopg2.connect(user=POSTGRES_USER, password=POSTGRES_PASS,
 cursor = conn.cursor()
 conn.autocommit = True
 
-query = ''' SELECT * from articles where lang like 'pt' and name is null and urls like '%%observador%%' '''
+query = ''' SELECT * from articles where lang like 'pt' and name is null and description is null '''
 
 querlist = [query]
 for q in querlist:
@@ -46,4 +46,10 @@ class MainSpider(scrapy.Spider):
             query = '''update articles set name =%s , description =%s , devimages =%s where urls like %s '''
             cursor.execute(query, [str(title), str(description), str(devimages), str(urlsite)])
             print ("SUBMITTED : {}".format(urlsite))
-            
+        else :
+            title = response.css('header > div.article-head-content-headline > h1').extract()
+            #description = response.css("div.article-body-wrapper > div > div > div.fbg-col-4.fbg-col-lg-2.center-column > div").extract()
+            #devimages = response.css("header > figure > picture > img").extract()
+            query = '''update articles set name =%s  where urls like %s '''
+            cursor.execute(query, [str(title, str(urlsite)])
+            print ("SUBMITTED : {}".format(urlsite))
