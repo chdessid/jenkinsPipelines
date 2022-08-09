@@ -34,12 +34,17 @@ for i in range(1,(iteration)) :
     
     for row, index in stg_records.iterrows():
         print ("MOVING/ MARKING STG URLS TO PROD : {}".format(index["urls"]))
-        send_to_prod = ''' insert into articles (urls) values (%s) on conflict do nothing '''
-        query_prod_pgcursor = prod_pgcursor.execute(send_to_prod,[index["urls"]])
+        send_to_prod = ''' insert into articles (urls,name,description,devimages) values (%s,%s,%s,%s) on conflict DO NOTHING '''
         
-        addattributes = ''' update articles set name =%s, description =%s , devimages =%s where urls =%s '''
-        query_prod_pgcursor_attributes = prod_pgcursor.execute(addattributes,[index["name"].encode('ascii', 'ignore').decode('ascii'),index["description"].encode('ascii', 'ignore').decode('ascii'),
-                                                                            index["devimages"].encode('ascii', 'ignore').decode('ascii'),index["urls"]])
+        query_prod_pgcursor_attributes = prod_pgcursor.execute(send_to_prod,[
+            
+            index["urls"],
+            index["name"].encode('ascii', 'ignore').decode('ascii'),
+            index["description"].encode('ascii', 'ignore').decode('ascii'),
+            index["devimages"].encode('ascii', 'ignore').decode('ascii')
+            
+            ])
+
         mark_prod_ok = ''' update articles set prod_ok=TRUE where urls =%s '''
         query_mark_prod_ok = stg_pgcursor.execute(mark_prod_ok,[index["urls"]])
         print ("PROD RECORDS MOVED : {}".format(index["urls"]))
